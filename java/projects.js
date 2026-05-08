@@ -51,7 +51,7 @@ const projects = [
     imgSrc: "../images/filler.jpeg",
     imgAlt: "Project Image",
     github: "",
-    live: "../../index.html"
+    live: "../wdd131_copy/index.html"
   }
 ];
 
