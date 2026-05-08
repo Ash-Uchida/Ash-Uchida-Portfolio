@@ -62,7 +62,7 @@ leftBtn.addEventListener("click", function(){
 })
 
 // ========================
-// show the current projects from list sames as week 10 prove - light work, no reaction , ayyyyyy, ayyyy i'm on the edge of ooowuuhohoh
+// show the current projects from list sames as week 10 prove - 
 
 function showProDesc(){
     
