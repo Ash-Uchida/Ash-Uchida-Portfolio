@@ -1,0 +1,47 @@
+body{
+    background-color: rgb(213, 249, 204);
+}
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(243, 255, 255);
+
+    padding: 25px;
+    margin-left: 30em;
+    margin-right: 30em;
+    margin-top: 10em;
+    border: 2px solid rgb(129, 158, 245);
+    border-radius: 5%;
+}
+img{
+    width: 5%;
+}
+button{
+    background-color:rgb(213, 249, 204) ;
+    margin: 30px;
+    padding: 8px;
+    border:  2px solid rgb(129, 158, 245);
+    border-radius: 5%;
+}
+button:hover{
+    background-color: rgb(129, 158, 245) ;
+    color: aliceblue;
+}
+/* now to style the table */
+
+table{
+    border-collapse: collapse;
+    width: 100%;
+
+}
+thead{
+    background-color: rgb(129, 158, 245) ;
+    color: aliceblue;
+}
+td{
+    text-align: center;
+}
+tbody tr:hover {
+    background-color: rgba(100, 125, 201, 0.1);
+}

@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap');
+body{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.book{
+    width: 15%;
+}
+h1{
+    font-family: "Amatic SC", sans-serif;
+    font-size: 70px;
+    margin: 20px;
+}
+header{
+    display: flex;
+    justify-content: center;
+}
+
+.input{
+    display: flex;
+    align-items: center;
+    width: 70%;
+    padding: 15px;
+    margin: 20px;
+    border: 2px solid #282727; 
+    border-radius: 4px;
+}
+.input input{
+    flex-grow: 1;
+    border: none;
+    outline: none;
+    font-size: 17px;
+}
+.search{
+    width: 25px;
+}
+main{
+    border:2px solid #282727;
+    padding: 30px;
+    width: 70%;
+}
+.crisp{
+    width: 100%;
+    
+}
+button{
+    width: 100px;
+    height:50px;
+    font-size: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+button:hover{
+    color: white;
+    background-color: rgb(43, 168, 210);
+}
+h2{
+    font-family: "Amatic SC", sans-serif;
+    font-size: 40px;
+    color: rgb(43, 168, 210);
+    margin: 0;
+}
+
+.icon-star,.icon-star-empty{
+    font-size: 25px;
+    
+}
+footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 30px;
+}
+.social img{
+    width: 55px;
+}
+.footertext{
+    margin: 20px;
+}
+p {
+    display: none;
+}
+
+@media (min-width:700px){
+
+    main{
+        display: grid;
+        grid-template-areas: 
+        'img btn'
+        'img h2'
+        'img span'
+        'img p';
+        grid-template-columns: 1fr 1fr;
+        gap:15px;
+    }
+    .crisp{
+        grid-area: img;
+    }
+    button{
+        grid-area: btn;
+    }
+    h2{
+        grid-area:h2;
+    }
+    span{
+        grid-area: span;
+    }
+    p{
+        display: block;
+        grid-area: p;
+    }
+    footer {
+        display: flex;
+        flex-direction: row-reverse;
+        width: 70%;                 
+    }
+    .footertext {
+        flex-grow: 1;                  
+    }
+
+}

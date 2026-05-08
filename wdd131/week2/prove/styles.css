@@ -1,0 +1,84 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+
+body {
+  font-family: Roboto, sans-serif;
+  justify-content: center;
+  text-align: center;
+  background-color: rgb(111, 130, 208);
+}
+
+main{
+    background-color: rgb(204, 207, 219);
+    margin: 1rem auto;
+    padding: 1rem;
+}
+
+#images{
+    max-width: 1500px;
+    justify-content: center;
+    margin: 1rem auto;
+    padding: 1rem;
+}
+
+header, footer, nav a{
+    color: aliceblue;
+    text-decoration: none;
+}
+nav a:hover{
+    color: rgb(36, 36, 94);
+}
+
+nav{
+    word-spacing: 35px;
+}
+
+#img{
+    border: solid 2px rgb(84, 85, 96);
+    padding: 5px;
+    background-color:rgb(228, 230, 239);
+    margin: 20px;
+    box-shadow: 5px 10px rgb(126, 128, 144);
+}
+
+h3{
+    color: aliceblue;
+}
+
+.menu_btn{
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+}
+
+
+/* MOBILE DEFAULT */
+nav{
+    display: none;
+}
+nav.show{
+    display: block;
+    text-align: left;
+    line-height: 1.6;
+}
+nav a{
+    display: block;
+}
+.menu_btn{
+    display: block;
+    text-align: center;
+}
+
+/* LAPTOP DEFAULT */
+@media (min-width: 700px){
+    .menu_btn{
+        display: none;
+    }
+    nav{
+        display: block;
+    }
+    nav a{
+        display: inline-block;
+    }
+
+}
+
