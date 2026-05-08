@@ -1,0 +1,181 @@
+---
+title: "Client Report - Star Wars for Dummies"
+subtitle: "Unit 5 Task 3"
+author: "Ash Uchida"
+format:
+  html:
+    self-contained: true
+    page-layout: full
+    title-block-banner: true
+    toc: true
+    toc-depth: 3
+    toc-location: body
+    number-sections: false
+    html-math-method: katex
+    code-fold: true
+    code-summary: "Show the code"
+    code-overflow: wrap
+    code-copy: hover
+    code-tools:
+        source: false
+        toggle: true
+        caption: See code
+execute: 
+  warning: false
+    
+---
+
+```{python}
+import polars as pl 
+import numpy as np
+from lets_plot import *
+# add the additional libraries you need to import for ML here
+
+LetsPlot.setup_html(isolated_frame=True)
+```
+
+
+```{python}
+# import your data here using polars and the URL
+df = pl.read_csv("StarWars.csv", skip_rows=10, has_header=True)
+df = df.with_columns(pl.col("email").alias("email_domain"))
+```
+
+<!-- Rather than a simple write up like we have been doing so far, this project requires a more structured approach. You will need to show you have completed the tasks, but will structure the report in a way that is more like a client report. The report will be structured as follows:
+
+ - Executive Summary: This is a high level overview of the analysis, including the problem statement, the data used, and the main findings. It should be concise and to the point, summarizing the key insights/recommendations without going into too much detail. These are usually bullet points, no graphs. PLEASE EXPLICITLY STATE IN THIS SECTION WHETHER YOU DID THE STRETCH OR NOT! 
+ - Methods: this is a high level overview of the methods used in the analysis. This should include an explanation of data preparation steps, especially how you dealt with each categorical variable and why. Showing the resulting or original distribution of variables may be helpful. Describe how you handled missing values and outliers. How did/might your decisions impact results?Explain any feature engineering steps you took. This is also where you will put the graphs you recreated to show you validated the dataset and that it matches the article.
+ - Results: this is a more in-depth explanation of results. A classification report and feature importance graphs belong here.
+ - Conclusion: this is where you will discuss the implication of the results, including any limitations of the analysis, and recommendations for actions/future work. It may feel repetitive to the executive summary, but it should be more detailed and include any additional insights you gained from the analysis. -->
+
+## Executive Summary
+
+_This report is to figure out if we can predict a household's income level through their responses to star wars surveys. To do this I'll be processing data with 835 respondents and dividing them into 2 groups: those who make more and less than 50,000. After going through and cleaning our data, extracting names and email and using a decision tree learning model we achieved an overall accuracy of 60%. While the model showed a high recall for high-income earners, it's overall precision suggests that Star wars fans habits and preferences arn't deeply connected to their  financial status. I would recommend using more traditional variables when predicting in the future._
+
+## Methods
+
+_One of our first methods was to use regex to separate the emails in our database and figure out what the first and last names were, this was done by figuring out the symbol/pattern that was inbetween the first and last name then striping it away and replacing it with a simple space. By using this space I could then easily define the first and last name_
+```{python}
+
+emails1 = df.with_columns(pl.col("email").str.strip_chars().str.replace_all('\\.|\\_|\\d{5}'," "))
+
+emails1 = emails1.with_columns(
+  pl.col("email").str.extract('^(\\S*)\\s').alias("first_name"),
+  pl.col("email").str.extract('\\s(\\S*)@').alias("last_name")
+)
+
+emails1.select(['email_domain','first_name','last_name']).head(5)
+```
+
+_Then we wanted to count how many people we have for each email platform. To do this I extracted the characters following the @. Then using those domain I used the count function to see their total and compare them_
+```{python}
+domains = emails1.with_columns(
+  pl.col("email_domain").str.strip_chars().str.extract('@(\\S*)$').str.to_lowercase().alias('domain')
+)
+
+domain_count = domains.group_by("domain").agg(
+    pl.col("email_domain").count().alias("count") 
+).sort("count", descending=True)
+
+
+domain_count
+
+```
+
+_Then We wanted to find our respondents that have at least seen one film. To do this I used the any horizonal paired with a not null function. Which checks to see if any of the columns was not null. It's important to use 'any' because many people get confused and use 'all' horizonal that checks if all the provided columns are not null_
+```{python}
+# first we need to get rid of this column
+excludeData = domains.drop("seen_any")
+
+# we want to keep track of all the episodes and check that if they is not null using all_horizontal
+filterData = excludeData.filter(
+  pl.any_horizontal(pl.col(['seen_episode_I','seen_episode_II','seen_episode_III','seen_episode_IV','seen_episode_V','seen_episode_VI']).is_not_null())
+)
+filterData
+```
+
+
+## Results
+
+_Then for more accurate results we had to drop unique columns that have no relation that dictates our preditions_
+
+<!-- Drop the RespondentID column, first and last name columns, and email column and One-hot encode all remaining non-numeric columns-->
+```{python}
+import polars.selectors as cs
+
+clean = filterData.drop(['RespondentID', 'email', 'email_domain','domain','first_name','last_name'])
+
+dummy = clean.select(cs.string()).to_dummies()
+
+```
+
+_Our target is to figure out wether a person had a Household Income $50,000 or greater depending on our star wars data. So we would need to create a target column that we can use to compare our predtions to_
+<!-- Create your target (also known as “y” or “label”) column to indicate whether a person had a Household Income $50,000 or greater -->
+```{python}
+change = clean.with_columns(pl.col('household_income').str.strip_chars().str.replace_all('\\$|\\,| ', ""))
+
+change = change.with_columns(
+  pl.col('household_income').str.extract('^(\\d+)').cast(pl.Int64).alias('start_num'),
+)
+
+cleaned =  change.with_columns(
+  pl.when(pl.col('start_num') < 50000).then(0)
+  .when(pl.col('start_num').is_null()).then(0)
+  .otherwise(1).alias('target')
+)
+cleaned
+```
+```{python}
+fulldf = pl.concat([dummy, cleaned], how='horizontal')
+
+x = fulldf.select(cs.numeric()).drop(['target','start_num',pl.col('^household_income_.*$')])
+y = fulldf.select('target')
+
+x = x.fill_null(0)
+```
+
+## Results
+
+_After we have finally finished prepping and cleaning our data we are now prepared to split, train and test our data. I used the decision tree classifer for fitting our data._
+
+_As you can see in our classification report after all our work our accuracy is around 60%, from the numbers in our classification report using star wars data isn't the best metric to use when trying to figure out a families salary range. In this day and age anyone regardless of our finanical situations can enjoy the classics_
+
+<!-- Build a machine learning model that predicts whether a person had a Household Income $50,000 or greater with at least 55% accuracy. Describe your model and report the accuracy. -->
+
+```{python}
+from sklearn.model_selection import train_test_split
+
+x_train, x_test, y_train, y_test = train_test_split(x,y, random_state=12394, train_size=.8)
+```
+
+```{python}
+from sklearn.tree import DecisionTreeClassifier
+
+tree_classifier = DecisionTreeClassifier(max_depth=3)
+tree_classifier.fit(x_train, y_train)
+```
+
+```{python}
+from sklearn.metrics import classification_report
+y_pred = tree_classifier.predict(x_test)
+print(classification_report(y_test, y_pred))
+```
+
+```{python}
+
+p = (
+    ggplot(cleaned, aes(x=as_discrete("target"), fill=as_discrete("target"))) 
+    + geom_bar()
+    + scale_x_discrete(labels=["Under $50k", "Over $50k"]) 
+    + scale_fill_manual(values=["#f8766d", "#00bfc4"], labels=["Under $50k", "Over $50k"])
+    + labs(
+        title="Distribution of Household Income in Dataset",
+        x="Income Category", 
+        y="Number of Respondents",
+        fill="Income Group"
+    )
+)
+
+p
+  
+```

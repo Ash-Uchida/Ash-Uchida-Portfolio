@@ -1,0 +1,776 @@
+@import url('https://fonts.googleapis.com/css2?family=IM+Fell+French+Canon&family=Lato:ital,wght@0,400;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Monoton&display=swap');
+
+:root {
+  /* change the values below to your colors from your palette */
+  --primary-color: #16323c ;
+  --secondary-color: #3C3E49 ;
+  --accent1-color: #4C7A8D;
+  --accent2-color: #6FBCD6 ;
+  --background-color:#C2CDE9;
+
+  /* change the values below to your chosen font(s) */
+  --heading-font: "Monoton";
+  --paragraph-font: Times, Helvetica, sans-serif;
+
+  /* these colors below should be chosen from among your palette colors above */
+  --headline-color-on-white: var(
+    --primary-color
+  ); /* headlines on a white background */
+  --headline-color-on-color: #6FBCD6; /* headlines on a colored background */
+  --paragraph-color-on-white: var(
+    --secondary-color
+  ); /* paragraph text on a white background */
+  --paragraph-color-on-color: var(--accent2-color); /* paragraph text on a colored background */
+  --paragraph-background-color: var(--secondary-color);
+  --nav-link-color: var(--secondary-color);
+  --nav-background-color: var(--accent2-color);
+  --nav-hover-link-color: var(--accent2-color);
+  --nav-hover-background-color: var(--secondary-color);
+}
+
+/*  Look around below...but DON'T CHANGE ANYTHING! */
+
+body {
+  background-color: var(--background-color);
+  margin: 0 auto;
+  padding: 4em;
+  font-size: 18px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--heading-font);
+  color: var(--headline-color-on-white);
+  text-align: center;
+}
+h2 {
+  text-align: center;
+}
+h4{
+  font-family: var(--heading-font);
+  color: var(--background-color);
+}
+header {
+  padding: 1em;
+  text-align: center;
+  color: var(--paragraph-color-on-color);
+  background-color: var(--paragraph-background-color);
+  border-radius: 20px 20px 0px 0px;
+}
+p {
+  font-family: var(--paragraph-font);
+  color: var(--secondary-color);
+  padding: 1em;
+  text-align: center;
+}
+.container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo{
+  width: 80px;
+  height: auto;
+  flex-shrink: 0;
+  margin: 0;
+}
+nav {
+  display: flex;
+  background-color: var(--nav-background-color);
+  line-height: 3em;
+  text-align: center;
+  font-size: 1.2em;
+  list-style-type: none;
+  border-radius: 20px;
+  flex-wrap: wrap;
+}
+nav a {
+  padding: 1em;
+  min-width: 120px;
+  text-decoration: none;
+  padding: 10px;
+}
+nav a:link,
+nav a:visited {
+  color: var(--nav-link-color);
+}
+nav a:hover {
+  color: var(--nav-hover-link-color);
+  background-color: var(--nav-hover-background-color);
+}
+
+.cta-section {
+    background: linear-gradient(rgba(0, 0, 0, 0.3)),url('images/header.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    padding: 70px 0;
+    text-align: center;
+    border-radius: 0px 0px 20px 20px;
+  }
+  .cta-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .cta-content h1 {
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+    color: var(--accent2-color);
+    text-shadow: 2px 2px 10px #000000;
+  }
+  
+  .cta-content p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: aliceblue;
+    text-shadow: 2px 2px 10px #000000, 2px 2px 10px #000000;
+  }
+  
+  .cta-button, .link-button {
+    display: inline-block;
+    background-color: var(--accent2-color);
+    padding: 12px 28px;
+    border-radius: 50px;
+    font-size: 1em;
+    text-decoration: none;
+    color:var(--secondary-color) ;
+    transition: transform 0.2s ease;
+  }
+  .cta-button:hover, .link-button:hover{
+    background-color: var(--secondary-color);
+    color:var(--accent2-color) ;
+    transform: translateY(-5px);
+
+  }
+  .cta-content h2{
+    color: #6FBCD6;
+    text-shadow: 2px 2px 10px #000000;
+  }
+
+.boxes{
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.education, .experience{
+  flex: 1;
+  text-align: center;
+  background-color: var(--accent2-color);
+  padding: 10px;
+  margin-top: 50px;
+  border-radius: 20px;
+}
+.boxes img{
+  width: 300px;
+  height: auto;
+  flex-shrink: 0;
+  margin: 0;
+  border-radius: 20px;
+  margin-top: 50px;
+}
+.left-box{
+  margin-right: 50px;
+}
+.experience{
+  margin-left: 50px;
+}
+.edu{
+  display: inline-block;
+  background-color: var(--secondary-color);
+  padding: 12px 28px;
+  border-radius: 50px;
+  font-size: 1em;
+  text-decoration: none;
+  color:var(--accent2-color) ;
+  transition: transform 0.2s ease;
+  margin-bottom: 20px;
+}
+.edu:hover{
+  background-color: var(--accent2-color);
+  color:var(--secondary-color) ;
+  transform: translateY(-5px);
+  border: solid 1px #3C3E49;
+}
+.exp{
+  display: inline-block;
+  background-color: var(--secondary-color);
+  padding: 12px 28px;
+  border-radius: 50px;
+  font-size: 1em;
+  text-decoration: none;
+  color:var(--accent2-color) ;
+  transition: transform 0.2s ease;
+  margin-bottom: 20px;
+}
+.exp:hover{
+  background-color: var(--accent2-color);
+  color:var(--secondary-color) ;
+  transform: translateY(-5px);
+  border: solid 1px #3C3E49;
+}
+.l-arrow, .r-arrow{
+  background-color: var(--accent1-color);
+  padding: 15px;
+  border-radius: 30px;
+  color: var(--background-color);
+  font-size: 2em;
+  height: 90px;
+  margin: 30px;
+  border: none;
+
+}
+.l-arrow:hover{
+  background-color: var(--accent2-color);
+  transform: translateX(-5px);
+} .r-arrow:hover{
+  background-color: var(--accent2-color);
+  transform: translateX(5px);
+}
+
+.project-hor{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+/* filler */
+.filler{
+  border-radius: 20px;
+  width: 400px;
+  
+}
+.projects{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.society{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+
+  background-color: var(--secondary-color);
+  margin: 50px;
+  padding: 50px;
+  border-radius: 20px;
+}
+.card{
+  text-align: center;
+  transition: transform 0.2s ease;
+  align-items: center;
+}
+.card:hover{
+  transform: translateY(-10px);
+  
+}
+.card img{
+  width: 80%;
+  height: 200px;
+  border-radius: 20px;
+  margin: 0 auto;
+}
+.card p{
+  background-color:var(--accent1-color) ;
+  color:aliceblue;
+  border-radius: 20px;
+  margin: 10px;
+}
+
+footer{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+
+  background:linear-gradient(rgba(0, 0, 0, 0.3)), url(images/footer.webp);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  border-radius: 20px;
+  padding: 50px;
+  margin: 35px;
+}
+footer p{
+  background-color: #C2CDE9;
+  border-radius: 20px;
+}
+footer h3{
+  background-color: #C2CDE9;
+  border-radius: 20px;
+}
+
+
+/* for the pages */
+.header1{
+  border-radius: 20px;
+}
+
+/* for the me page */
+
+.me{
+  text-align: center;
+  background-color:var(--accent2-color) ;
+  padding: 25px;
+  border-radius: 20px;
+
+  display: grid;
+  grid-template-areas: 
+  'h2 img'
+  'p img'
+  'button img';
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+.me-img{
+  border-radius: 20px;
+  width: 70%;
+  grid-area: img;
+  justify-self: center;
+  align-self: center;
+}
+.me h2{
+  margin-top: 50px;
+  grid-area: h2;
+}
+.me p{
+  grid-area: p;
+}
+.me a{
+  grid-area: button;
+  width: 30%;
+  justify-self: center;
+  background-color: var(--accent1-color);
+  color: aliceblue;
+}
+.society a:hover{
+  transform: none;
+}
+article{
+  justify-self: center;
+  background-color: var(--accent1-color);
+  color: aliceblue;
+  text-align: center;
+  margin: 50px;
+  padding: 35px;
+  border-radius: 20px;
+  width: 70%;
+}
+.article{
+  justify-self: center;
+  color:var(--background-color);
+  background-color: var(--secondary-color);
+  text-align: center;
+  margin: 50px;
+  padding: 35px;
+  border-radius: 20px;
+  width: 70%;
+}
+.sideByside{
+  display: grid;
+  grid-template-areas: 
+  'edHTML img';
+  grid-template-columns: 3fr 1fr;
+  margin: 10px;
+  gap: 15px;
+}
+.sideByside1{
+  display: grid;
+  grid-template-areas: 
+  'edHTML img';
+  grid-template-columns: 3fr 1fr;
+  margin: 10px;
+  gap: 15px;
+}
+.edHTML{
+
+  background-color: var(--accent2-color);
+  padding: 30px;
+  border-radius: 20px;
+  grid-area: edHTML;
+}
+.long{
+  background: linear-gradient(rgba(0, 0, 0, 0.3)), url('images/long.png');
+  background-size: 40%;
+  background-position:center;
+  background-attachment: fixed;
+
+  border-radius: 20px;
+  grid-area: img;
+
+}
+.long1{
+  background: linear-gradient(rgba(0, 0, 0, 0.3)), url('images/long.png');
+  background-size: 40%;
+  background-position:center;
+  background-attachment: fixed;
+
+  border-radius: 20px;
+  grid-area: img;
+
+}
+.side{
+  grid-area: img;
+  border-radius: 20px;
+  width: 100%;
+}
+.sideSocity{
+  grid-area: img;
+  border-radius: 20px;
+  width: 100%;
+}
+
+#article{
+  color:aliceblue;
+}
+
+.input{
+  display: flex;
+  justify-self: center;
+  width: 70%;
+  padding: 15px;
+  border: 2px solid #282727; 
+  border-radius: 20px;
+  background-color: var(--secondary-color);
+}
+.input input{
+  flex-grow: 1;
+  border: none;
+  outline: none;
+  font-size: 17px;
+  text-align: center;
+  background-color: var(--secondary-color);
+  
+}
+.search{
+    width: 25px;
+}
+
+.form{
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  background-color: #4C7A8D;
+  width: 40%;
+  border-radius: 20px;
+  padding: 15px;
+  text-align: center;
+  align-items: center;
+  margin: 50px;
+}
+#submit-btn{
+  border-radius: 50px;
+  padding: 12px 28px;
+  font-size: 20px;
+  width: 50%;
+  margin: 15px;
+  background-color: var(--accent2-color);
+  text-decoration: none;
+  transition: transform 0.2s ease;
+}
+#submit-btn:hover{
+  background-color: var(--secondary-color);
+  color:var(--accent2-color) ;
+  transform: translateY(-5px);
+}
+
+#name, #reason, #email{
+  padding: 12px 28px;
+  border-radius: 20px;
+  margin: 10px;
+  width: 70%;
+  text-align: center;
+  border: none;
+}
+
+#h1{
+  color: var(--background-color);
+}
+
+.moreTrans{
+  display: flex;
+  justify-self: center;
+  background-color: var(--secondary-color);
+  padding: 12px 28px;
+  border-radius: 50px;
+  font-size: 1em;
+  text-decoration: none;
+  color:var(--accent2-color) ;
+  transition: transform 0.2s ease;
+  margin-bottom: 20px;
+}
+.moreTrans:hover{
+  background-color: var(--accent2-color);
+  color:var(--secondary-color) ;
+  transform: translateY(-5px);
+  border: solid 1px #3C3E49;
+}
+.more{
+  display: flex;
+  justify-self: center;
+  background-color: var(--secondary-color);
+  padding: 12px 28px;
+  border-radius: 50px;
+  font-size: 1em;
+  text-decoration: none;
+  color:var(--accent2-color) ;
+  transition: transform 0.2s ease;
+  margin-bottom: 20px;
+}
+.more:hover{
+  background-color: var(--accent2-color);
+  color:var(--secondary-color) ;
+  transform: translateY(-5px);
+  border: solid 1px #3C3E49;
+}
+
+.tags{
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+}
+
+.center{
+  display: flex;
+  justify-content: center;
+}
+.link-button1, .link-button2 {
+  display: inline-block;
+  background-color: var(--accent2-color);
+  padding: 12px 28px;
+  border-radius: 50px;
+  font-size: 1em;
+  text-decoration: none;
+  color:var(--secondary-color) ;
+  transition: transform 0.2s ease;
+}
+.link-button1:hover, .link-button2:hover{
+  background-color: var(--secondary-color);
+  color:var(--accent2-color) ;
+  transform: translateY(-5px);
+
+}
+.more1{
+  display: inline-block;
+  background-color: var(--secondary-color);
+  padding: 12px 28px;
+  border-radius: 50px;
+  font-size: 1em;
+  text-decoration: none;
+  color:var(--accent2-color) ;
+  transition: transform 0.2s ease;
+  margin: 30px;
+}
+.more1:hover{
+  background-color: var(--accent2-color);
+  color:var(--secondary-color) ;
+  transform: translateY(-5px);
+  border: solid 1px #3C3E49;
+}
+.tags{
+  text-align: center;
+}
+.nobot{
+  margin-bottom: 0;
+  margin-top: 70px;
+}
+.innerProjects{
+  background-color: var(--accent1-color);
+  border-radius: 20px;
+  width: 45%;
+
+}
+.innerProjects p{
+  color: aliceblue;
+}
+.cta-button1 {
+  display: flex;
+  justify-self: center;
+  margin: 30px;
+  background-color: var(--accent2-color);
+  padding: 12px 28px;
+  border-radius: 50px;
+  font-size: 1em;
+  text-decoration: none;
+  color:var(--secondary-color) ;
+  transition: transform 0.2s ease;
+}
+.cta-button1:hover{
+  background-color: var(--secondary-color);
+  color:var(--accent2-color) ;
+  transform: translateY(-5px);
+
+}
+
+.rotate{
+    width: 100%;
+  }
+
+/* lets see where we need to add the media queries: these are like for tablets */
+@media (max-width: 1000px){
+
+  /* main index.html */
+  .boxes{
+    display: block;
+    justify-content: center;
+    gap: 10px;
+  }
+  .boxes img{
+    display: flex;
+  }
+  .boxes img{
+    justify-self: center;
+  }
+  .left-box{
+  margin-right: 0;
+  }
+  .experience{
+    margin-left: 0;
+  }
+
+  .innerProjects{
+    width: 70%;
+  }
+
+  .society{
+    display: block;
+
+    background-color: var(--secondary-color);
+    margin: 10px;
+    padding: 10px;
+    border-radius: 20px;
+  }
+
+
+  /* contact info submit button and it's form width size cause it gets too small*/
+  #submit-btn{
+    font-size: 15px;
+    width: 50%;
+  }
+  .form{
+    width: 60%;
+    padding: 15px;
+    margin: 50px;
+  }
+  .me{
+    text-align: center;
+    background-color:var(--accent2-color) ;
+    padding: 25px;
+    border-radius: 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .sideByside1{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .moreTrans{
+    align-self: center;   
+    width: auto; 
+  }
+
+}
+/* these are for like phone formats */
+@media (max-width: 675px){
+  /* main index.html  */
+
+  .project-hor{
+    /* lets completely change its layout for mobile devices */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+  .innerProjects{
+    width: 100%;
+    order: 1; /* this box goes ontop of the buttons*/
+  }
+  .l-arrow, .r-arrow{
+    order: 2;
+    width: 60px;
+    height: 60px;
+    font-size: 1.5em;
+  }
+  body{
+    /* fix this for phones */
+    padding: 5px;
+  }
+
+  .side{
+    display: none;
+  }
+  
+  .edHTML{
+    width: 100%;
+    padding: 5px;
+  }
+  .sideByside{
+    display: flex;
+  }
+  .sideByside1{
+    /* display flex for column transcrip button */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .long1{
+    display: none;
+  }
+  .moreTrans{
+    align-self: center;   
+    width: auto; 
+  }
+
+  .me{
+    text-align: center;
+    background-color:var(--accent2-color) ;
+    padding: 25px;
+    border-radius: 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .link-button{
+    align-self: center;
+  }
+
+  /* the width cause it gets too small */
+  .form{
+    width: 90%;
+    padding: 15px;
+    margin: 50px;
+  }
+
+  
+}
+/* these boxes are slightly problematic -----------------------> */ 
+@media (max-width: 1200px){
+  /* main index.html */
+  .boxes{
+    display: block;
+    justify-content: center;
+    gap: 10px;
+  }
+  .boxes img{
+    display: flex;
+  }
+  .boxes img{
+    justify-self: center;
+  }
+  .left-box{
+  margin-right: 0;
+  }
+  .experience{
+    margin-left: 0;
+  }
+}
